@@ -1,6 +1,8 @@
 use std::fmt;
 
-#[derive(Debug, Eq)]
+const MINUTES_IN_DAY: i32 = 1440;
+
+#[derive(Debug, PartialEq)]
 pub struct Clock(i32);
 
 impl Clock {
@@ -9,13 +11,7 @@ impl Clock {
     }
 
     pub fn add_minutes(&self, minutes: i32) -> Self {
-        Self((self.0 + minutes).rem_euclid(1440))
-    }
-}
-
-impl PartialEq for Clock {
-    fn eq(&self, other: &Self) -> bool {
-        self.0 == other.0
+        Self((self.0 + minutes).rem_euclid(MINUTES_IN_DAY))
     }
 }
 
