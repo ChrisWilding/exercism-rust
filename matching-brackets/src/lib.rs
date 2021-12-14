@@ -4,23 +4,12 @@ pub fn brackets_are_balanced(string: &str) -> bool {
     for c in string.chars() {
         match c {
             '(' | '[' | '{' => stack.push(c),
-            ')' | ']' | '}' => {
-                let opening = stack.pop();
-                let matching = opening
-                    .map(|o| match c {
-                        ')' => o == '(',
-                        ']' => o == '[',
-                        '}' => o == '{',
-                        _ => false,
-                    })
-                    .unwrap_or(false);
-                if !matching {
-                    return false;
-                }
-            }
-            _ => continue,
-        };
+            ')' => if stack.pop() != Some('(') { return false },
+            ']' => if stack.pop() != Some('[') { return false },
+            '}' => if stack.pop() != Some('{') { return false },
+            _ => (),
+        }
     }
 
-    stack.len() == 0
+    stack.is_empty()
 }
