@@ -19,8 +19,7 @@ impl fmt::Display for LogLevel {
 }
 
 pub fn log(level: LogLevel, message: &str) -> String {
-    let level = format!("{:?}", level);
-    format!("[{}]: {}", level.to_uppercase(), message)
+    format!("[{}]: {}", level, message)
 }
 
 pub fn info(message: &str) -> String {
