@@ -1,5 +1,3 @@
-#![allow(unused)]
-
 pub fn production_rate_per_hour(speed: u8) -> f64 {
     let success_rate = match speed {
         0 => 0.0,
